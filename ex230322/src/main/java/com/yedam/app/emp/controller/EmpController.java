@@ -14,9 +14,10 @@ public class EmpController {
 	@Autowired
 	EmpService empService;
 	
+	// getEmpInfo?employee_id=100
 	@RequestMapping("/getEmpInfo")
-	@ResponseBody
+	@ResponseBody // page리턴 x -> 대상 -> body출력
 	public EmpVO getEmpInfo(EmpVO empVO) {
 		return empService.getEmpInfo(empVO);
-	}
+	} // EmpVO 객체 -> 텍스트 : jackson으로 직렬화
 }
