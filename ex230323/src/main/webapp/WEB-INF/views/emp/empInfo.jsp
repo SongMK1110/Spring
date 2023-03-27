@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
-	<form action="empUpdate" method="post" onsubmit="return false">
+	<form onsubmit="return false">
 		<div>
 			<label>id : <input type="text" name="employeeId"
 				value="${empInfo.employeeId }" readonly /></label>
@@ -58,23 +58,43 @@
 		<button type="button">취소</button>
 	</form>
 	<script>
-		fetch('empUpdate', {
-			method : 'post',
-			headers : {
-				'Content-Type' : 'application/json'
-			},
-			body : convertData(); 
-		})
-		.then(response => response.json())
-		.then(data => console.log(data))
-		.catch(reject => console.log(reject));
-		
-		function convertData() {
-			let selectForm = document.querySelector('form');
+	
+		function updateEmpInfo() {
 			
-			let formData = new FormData(selectForm);
+			fetch('empUpdate', {
+				method : 'post',
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				body : JSON.stringify(serializeObject()) // 보내야 할 타입을 json으로 바꿔줌
+			})
+			.then(response => response.json())
+			.then(data => {
+				if(data != null && data['결과'] == 'Success'){
+					alert('사원번호 : ' + data['사원번호'] + '의 정보가 수정되었습니다.');
+				} else {
+					alert('해당 사원의 정보가 정상적으로 수정되지 않았습니다.');
+				}
+			})
+			.catch(reject => console.log(reject));
+		}
+	
+		
+		function serializeObject() {
+			let formData = $('form').serializeArray();
+			// [{ name : 'firstName', value : 'Steven'}, { name : '', value : ''}, ...]
+			
+			let objectData = {}
+			formData.forEach(function (obj, idx) {
+				objectData[obj.name] = obj.value
+			});
+			
+			return objectData;
 			
 		}
+		
+		document.querySelector('button[type="submit"]')
+			.addEventListener('click', updateEmpInfo);
 	</script>
 </body>
 </html>
