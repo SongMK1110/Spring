@@ -16,5 +16,5 @@ public class UserVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date today;
 	
-	private MultipartFile pic; // html input에 있는 name이랑 같아야함
+	private MultipartFile[] pic; // html input에 있는 name이랑 같아야함
 }

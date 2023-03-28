@@ -1,4 +1,4 @@
-package com.yedam.spring.board.service.Impl;
+package com.yedam.spring.board.service.impl;
 
 import java.util.List;
 
