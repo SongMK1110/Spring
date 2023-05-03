@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{template/layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <script>
+      console.log("출력");
+      const Grid = tui.Grid;
+      const test = new Grid({
+        el: document.getElementById("test"), // Container element
+        rowHeaders: ["rowNum"],
+        columns: [
+          {
+            header: "사원ID",
+            name: "employeeId",
+            sortingType: "asc",
+            sortable: true,
+          },
+          {
+            header: "이름",
+            name: "firstName",
+            sortingType: "asc",
+            sortable: true,
+          },
+          {
+            header: "성",
+            name: "lasttName",
+            sortingType: "asc",
+            sortable: true,
+          },
+          {
+            header: "입사일",
+            name: "hiredate",
+            sortingType: "asc",
+            sortable: true,
+            formatter: function (e) {
+              return dateChange(e.value);
+            },
+          },
+          {
+            header: "급여",
+            name: "salary",
+          },
+        ],
+        bodyHeight: 420,
+        pageOptions: {
+          useClient: true,
+          type: "scroll",
+          perPage: 30,
+        },
+      });
+    </script>
+  </head>
+  <body>
+    <div id="test"></div>
+  </body>
+</html>

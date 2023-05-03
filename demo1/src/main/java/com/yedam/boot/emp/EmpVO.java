@@ -1,4 +1,4 @@
-package com.yedam.spring.emp.service;
+package com.yedam.boot.emp;
 
 import java.util.Date;
 
@@ -17,6 +17,4 @@ public class EmpVO {
 	private double commissionPct;
 	private int managerId;
 	private int departmentId;
-	private int start;
-	private int end;
 }

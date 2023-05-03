@@ -1,5 +1,6 @@
 package com.yedam.spring.emp.web;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,4 +79,15 @@ public class EmpController {
 		return map.get("결과");
 	}
 	
+	//test
+	@GetMapping("/test")
+	public String test() {
+		return "emp/test";
+	}
+	
+	@GetMapping("/testList")
+	@ResponseBody
+	public List<EmpVO> testList() {
+		return empService.getEmpAll();
+	}
 }
